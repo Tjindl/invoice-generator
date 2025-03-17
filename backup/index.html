@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Invoice Generator</h1>
+        
+        <div class="invoice-form">
+            <div class="customer-details">
+                <div class="input-group">
+                    <label for="customerName">Customer Name:</label>
+                    <input type="text" id="customerName">
+                </div>
+                <div class="input-group">
+                    <label for="billNumber">Bill Number:</label>
+                    <input type="text" id="billNumber">
+                </div>
+                <div class="input-group">
+                    <label for="billDate">Bill Date:</label>
+                    <input type="date" id="billDate">
+                </div>
+            </div>
+
+            <div class="date-section">
+                <div class="input-group">
+                    <label for="fromDate">From:</label>
+                    <input type="date" id="fromDate">
+                </div>
+                <div class="input-group">
+                    <label for="toDate">To:</label>
+                    <input type="date" id="toDate">
+                </div>
+                <div class="input-group">
+                    <label for="numberOfDays">No. of Days:</label>
+                    <input type="number" id="numberOfDays" readonly>
+                </div>
+            </div>
+
+            <div class="balance-section">
+                <div class="input-group">
+                    <label for="issuedAmount">Issued:</label>
+                    <input type="number" id="issuedAmount" class="balance-input">
+                </div>
+                <div class="input-group">
+                    <label for="receivedAmount">Received:</label>
+                    <input type="number" id="receivedAmount" class="balance-input">
+                </div>
+                <div class="input-group">
+                    <label for="totalBalance">Total Balance:</label>
+                    <input type="text" id="totalBalance" readonly>
+                </div>
+            </div>
+
+            <div class="rate-section">
+                <div class="input-group">
+                    <label for="ratePerDay">Rate per Item per Day (Rs.):</label>
+                    <input type="number" id="ratePerDay">
+                </div>
+                <div class="input-group">
+                    <label for="rateRs">Rate (Rs.):</label>
+                    <input type="text" id="rateRs" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="finalAmount">Amount:</label>
+                    <input type="text" id="finalAmount" readonly>
+                </div>
+            </div>
+
+            <button id="addEntry" class="add-button">Add Entry</button>
+        </div>
+
+        <div class="table-container">
+            <table id="entriesTable">
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Days</th>
+                        <th>Issued</th>
+                        <th>Received</th>
+                        <th>Balance</th>
+                        <th>Rate/Day</th>
+                        <th>Rate Rs.</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="entriesBody">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="8" class="text-right"><strong>Total Amount:</strong></td>
+                        <td id="totalAmountCell" colspan="2"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="print-section">
+            <button id="printButton" class="print-button">Generate PDF</button>
+        </div>
+
+        <!-- Hidden div for PDF generation -->
+        <div id="pdf-content" class="pdf-content">
+            <div class="company-header">
+                <h1>Shiv Shakti Shuttering</h1>
+                <div class="invoice-details">
+                    <div><strong>Customer Name:</strong> <span id="pdf-customer-name"></span></div>
+                    <div><strong>Bill Number:</strong> <span id="pdf-bill-number"></span></div>
+                    <div><strong>Bill Date:</strong> <span id="pdf-bill-date"></span></div>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table id="pdf-table">
+                    <!-- Will be populated when generating PDF -->
+                </table>
+            </div>
+            <div class="footer">
+                <div class="signature-section">
+                    <div class="signature">
+                        <div>Customer's Signature</div>
+                        <div class="signature-line">_________________</div>
+                    </div>
+                    <div class="signature">
+                        <div>Authorized Signature</div>
+                        <div class="signature-line">_________________</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

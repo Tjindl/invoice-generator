@@ -1,0 +1,537 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.invoice-form {
+  margin-bottom: 40px;
+  background-color: #f8f8f8;
+  padding: 25px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
+.date-section,
+.balance-section,
+.rate-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+input[readonly] {
+  background-color: #f8f8f8;
+  cursor: not-allowed;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+  color: #333;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.add-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  padding: 6px 12px;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+
+.customer-details {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.print-section {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.print-button {
+  padding: 12px 24px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.print-button:hover {
+  background-color: #1976D2;
+}
+
+/* PDF Styles */
+.pdf-content {
+  display: none;
+  padding: 10px;
+  background: white;
+  width: 100%;
+  max-width: 210mm;
+  margin: 0 auto;
+  font-size: 8pt; /* Reduced font size */
+}
+
+.company-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  border-bottom: 2px solid #333;
+}
+
+.company-header h1 {
+  color: #1a1a1a;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.invoice-details {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.invoice-details div {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* PDF Table Styles */
+.pdf-content .table-wrapper {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: visible;
+}
+
+.pdf-content table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 10px 0;
+}
+
+.pdf-content th,
+.pdf-content td {
+  border: 1px solid #ddd;
+  padding: 3px 2px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pdf-content th:first-child,
+.pdf-content td:first-child,
+.pdf-content th:nth-child(2),
+.pdf-content td:nth-child(2) {
+  text-align: left;
+}
+
+/* Specific column widths */
+.pdf-content th:nth-child(1),
+.pdf-content td:nth-child(1),
+.pdf-content th:nth-child(2),
+.pdf-content td:nth-child(2) {
+  width: 10%;
+  text-align: left;
+}
+
+.pdf-content th:nth-child(3),
+.pdf-content td:nth-child(3) {
+  width: 5%;
+}
+
+.pdf-content th:nth-child(4),
+.pdf-content td:nth-child(4),
+.pdf-content th:nth-child(5),
+.pdf-content td:nth-child(5),
+.pdf-content th:nth-child(6),
+.pdf-content td:nth-child(6) {
+  width: 10%;
+}
+
+.pdf-content th:nth-child(7),
+.pdf-content td:nth-child(7) {
+  width: 7%;
+}
+
+.pdf-content th:nth-child(8),
+.pdf-content td:nth-child(8),
+.pdf-content th:nth-child(9),
+.pdf-content td:nth-child(9) {
+  width: 12%;
+}
+
+.signature-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding: 0 50px;
+}
+
+.signature {
+  text-align: center;
+}
+
+.signature-line {
+  margin-top: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Print styles */
+@media print {
+  @page {
+    margin: 5mm;
+    size: A4 landscape; /* Changed to landscape for better fit */
+  }
+  
+  body * {
+    visibility: hidden;
+  }
+  
+  .pdf-content,
+  .pdf-content * {
+    visibility: visible;
+  }
+  
+  .pdf-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 5mm;
+    font-size: 8pt;
+  }
+
+  .pdf-content table {
+    page-break-inside: auto;
+    font-size: 8pt;
+  }
+
+  .pdf-content tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  .pdf-content .product-section {
+    page-break-inside: avoid;
+    margin-bottom: 15px;
+  }
+
+  .pdf-content .product-title {
+    font-size: 10pt;
+    margin-bottom: 5px;
+  }
+
+  .total-section {
+    margin-top: 15px;
+    border-top: 1px solid #333;
+    padding-top: 5px;
+    text-align: right;
+    font-weight: bold;
+  }
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.product-section {
+  margin-bottom: 20px;
+}
+
+.product-section h3 {
+  color: #333;
+  padding: 10px 0;
+  border-bottom: 2px solid #4CAF50;
+  margin-bottom: 15px;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+}
+
+select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.total-section {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  text-align: right;
+  font-size: 18px;
+}
+
+.product-title {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* PDF-specific product styles */
+.pdf-content .product-section {
+  margin-bottom: 30px;
+  page-break-inside: avoid;
+}
+
+.pdf-content .product-title {
+  background-color: #f4f4f4;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-header {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.product-summary {
+  font-weight: bold;
+  font-size: 9pt;
+}
+
+.product-summary span {
+  margin-left: 20px;
+}
+
+/* Update existing product-group styles */
+.product-group {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* PDF-specific styles */
+.pdf-content .product-header {
+  page-break-inside: avoid;
+  border-bottom: 2px solid #4CAF50;
+}
+
+.pdf-content .product-summary {
+  font-size: 14px;
+}
+
+/* Login Screen Styles */
+.login-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.login-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.login-button:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: #ff4444;
+  margin-top: 10px;
+  text-align: center;
+}

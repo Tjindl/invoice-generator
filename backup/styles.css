@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.invoice-form {
+    margin-bottom: 40px;
+    background-color: #f8f8f8;
+    padding: 25px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.table-container {
+    flex: 2;
+    min-width: 600px;
+    overflow-x: auto;
+}
+
+.date-section,
+.balance-section,
+.rate-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+input[readonly] {
+    background-color: #f8f8f8;
+    cursor: not-allowed;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    color: #333;
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.add-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-start;
+}
+
+.add-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button {
+    padding: 6px 12px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+.customer-details {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.print-section {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.print-button {
+    padding: 12px 24px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.print-button:hover {
+    background-color: #1976D2;
+}
+
+/* PDF Styles */
+.pdf-content {
+    display: none;
+    padding: 20px;
+    background: white;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.company-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 2px solid #333;
+}
+
+.company-header h1 {
+    color: #1a1a1a;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.invoice-details {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.invoice-details div {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* PDF Table Styles */
+#pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+#pdf-table th,
+#pdf-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#pdf-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+#pdf-table tfoot tr td {
+    font-weight: bold;
+    background-color: #f8f8f8;
+}
+
+/* Additional PDF Styles */
+.table-wrapper {
+    margin: 20px 0 40px 0;
+}
+
+.footer {
+    margin-top: 50px;
+}
+
+.signature-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    padding: 0 50px;
+}
+
+.signature {
+    text-align: center;
+}
+
+.signature-line {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Ensure proper table layout in PDF */
+#pdf-table {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#pdf-table th {
+    background-color: #f4f4f4 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+#pdf-table th,
+#pdf-table td {
+    padding: 10px;
+    text-align: right;
+}
+
+#pdf-table th:first-child,
+#pdf-table td:first-child,
+#pdf-table th:nth-child(2),
+#pdf-table td:nth-child(2) {
+    text-align: left;
+}
+
+/* Print-specific styles */
+@media print {
+    @page {
+        margin: 15mm;
+        size: A4;
+    }
+    
+    body * {
+        visibility: hidden;
+    }
+    
+    .pdf-content, .pdf-content * {
+        visibility: visible;
+    }
+    
+    .pdf-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    #pdf-table {
+        page-break-inside: auto;
+    }
+
+    #pdf-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    #pdf-table thead {
+        display: table-header-group;
+    }
+
+    #pdf-table tfoot {
+        display: table-footer-group;
+    }
+
+    #pdf-table th {
+        background-color: #f4f4f4 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    .pdf-content {
+        padding: 20px;
+    }
+    
+    .signature-section {
+        position: fixed;
+        bottom: 50px;
+        width: calc(100% - 40px);
+    }
+}
