@@ -1,12 +1,68 @@
-# React + Vite
+# Estimate Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application for generating professional estimates with product-specific tracking and PDF export capabilities.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Password-protected access
+- Product type management (Plate, Channel, Balli, Farma)
+- Separate balance tracking for each product type
+- Automatic rate calculation based on product type
+- PDF generation with professional layout
+- Responsive design
+- Easy-to-use interface
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React + Vite
+- HTML2PDF for PDF generation
+- Environment variables for secure configuration
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Tjindl/invoice-generator.git
+```
+
+2. Install dependencies:
+```bash
+cd invoice-generator
+npm install
+```
+
+3. Create a `.env` file in the root directory and add your password:
+```
+VITE_APP_PASSWORD=your-password-here
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+## Usage
+
+1. Enter the password to access the application
+2. Fill in customer details
+3. Select product type (rates are preset)
+4. Add entries with dates and quantities
+5. Generate PDF estimates with product-wise subtotals
+
+## Product Types and Rates
+
+- Plate: Rs. 1.20 per day per item
+- Channel: Rs. 1.20 per day per item
+- Balli: Rs. 1.10 per day per item
+- Farma: Rs. 90 per day per item
+
+## Security
+
+The application is protected by a password stored in environment variables. Make sure to:
+- Never commit your .env file
+- Set up proper environment variables in your hosting platform
+- Keep your password secure
+
+## License
+
+MIT License
