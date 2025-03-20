@@ -27,11 +27,58 @@ h1 {
 }
 
 .invoice-form {
-  margin-bottom: 40px;
+  position: sticky;
+  bottom: 20px;
+  margin: 0 auto;
   background-color: #f8f8f8;
-  padding: 25px;
+  padding: 15px;
   border-radius: 6px;
   border: 1px solid #eee;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  z-index: 100;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
+}
+
+.form-row .input-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.form-row .input-group:nth-child(2),
+.form-row .input-group:nth-child(3) {
+  flex: 1.2; /* Give date fields slightly more space */
+  min-width: 130px; /* Ensure minimum width for date inputs */
+}
+
+/* Adjust other input groups to maintain balance */
+.form-row .input-group {
+  flex: 1;
+  min-width: 100px;
+}
+
+.form-row input,
+.form-row select {
+  padding: 6px;
+  font-size: 14px;
+}
+
+.form-row label {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.add-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  margin-left: auto;
+  display: block;
 }
 
 .date-section,
@@ -81,6 +128,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .table-container {
@@ -247,10 +295,11 @@ tbody tr:hover {
 .pdf-content td:nth-child(1),
 .pdf-content th:nth-child(2),
 .pdf-content td:nth-child(2) {
-  width: 10%;
+  width: 12%;  /* Increased from 10% to 12% */
   text-align: left;
 }
 
+/* Adjusting other column widths to maintain 100% total */
 .pdf-content th:nth-child(3),
 .pdf-content td:nth-child(3) {
   width: 5%;
@@ -262,7 +311,7 @@ tbody tr:hover {
 .pdf-content td:nth-child(5),
 .pdf-content th:nth-child(6),
 .pdf-content td:nth-child(6) {
-  width: 10%;
+  width: 9%;  /* Reduced from 10% to 9% to compensate */
 }
 
 .pdf-content th:nth-child(7),
@@ -274,7 +323,7 @@ tbody tr:hover {
 .pdf-content td:nth-child(8),
 .pdf-content th:nth-child(9),
 .pdf-content td:nth-child(9) {
-  width: 12%;
+  width: 11%;  /* Reduced from 12% to 11% to compensate */
 }
 
 .signature-section {
@@ -534,4 +583,47 @@ select:focus {
   color: #ff4444;
   margin-top: 10px;
   text-align: center;
+}
+
+/* Regular table column widths */
+.entries-table {
+  table-layout: fixed;
+}
+
+.entries-table th:nth-child(1),
+.entries-table td:nth-child(1),
+.entries-table th:nth-child(2),
+.entries-table td:nth-child(2) {
+  width: 12%;
+}
+
+.entries-table th:nth-child(3),
+.entries-table td:nth-child(3) {
+  width: 5%;
+}
+
+.entries-table th:nth-child(4),
+.entries-table td:nth-child(4),
+.entries-table th:nth-child(5),
+.entries-table td:nth-child(5),
+.entries-table th:nth-child(6),
+.entries-table td:nth-child(6) {
+  width: 9%;
+}
+
+.entries-table th:nth-child(7),
+.entries-table td:nth-child(7) {
+  width: 7%;
+}
+
+.entries-table th:nth-child(8),
+.entries-table td:nth-child(8),
+.entries-table th:nth-child(9),
+.entries-table td:nth-child(9) {
+  width: 11%;
+}
+
+.entries-table th:nth-child(10),
+.entries-table td:nth-child(10) {
+  width: 6%;
 }

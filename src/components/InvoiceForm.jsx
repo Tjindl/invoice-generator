@@ -73,7 +73,7 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.productType || !formData.fromDate || !formData.toDate || 
-        !formData.issuedAmount || !formData.receivedAmount) {
+        (!formData.issuedAmount && !formData.receivedAmount)) {
       alert('Please fill in all fields');
       return;
     }
@@ -81,10 +81,24 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
   };
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+    if (field === 'issuedAmount' && value !== '') {
+      setFormData(prev => ({
+        ...prev,
+        [field]: value,
+        receivedAmount: '0'
+      }));
+    } else if (field === 'receivedAmount' && value !== '') {
+      setFormData(prev => ({
+        ...prev,
+        [field]: value,
+        issuedAmount: '0'
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [field]: value
+      }));
+    }
   };
 
   const handleProductTypeChange = (type) => {
@@ -97,24 +111,21 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
 
   return (
     <form onSubmit={handleSubmit} className="invoice-form">
-      <div className="product-section">
+      <div className="form-row">
         <div className="input-group">
-          <label htmlFor="productType">Product Type:</label>
+          <label htmlFor="productType">Type:</label>
           <select
             id="productType"
             value={formData.productType}
             onChange={(e) => handleProductTypeChange(e.target.value)}
             required
           >
-            <option value="">Select Product</option>
+            <option value="">Select</option>
             {Object.keys(PRODUCT_RATES).map(type => (
               <option key={type} value={type}>{type}</option>
             ))}
           </select>
         </div>
-      </div>
-
-      <div className="date-section">
         <div className="input-group">
           <label htmlFor="fromDate">From:</label>
           <input
@@ -136,7 +147,7 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
           />
         </div>
         <div className="input-group">
-          <label htmlFor="numberOfDays">No. of Days:</label>
+          <label htmlFor="numberOfDays">Days:</label>
           <input
             type="number"
             id="numberOfDays"
@@ -144,9 +155,6 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
             readOnly
           />
         </div>
-      </div>
-
-      <div className="balance-section">
         <div className="input-group">
           <label htmlFor="issuedAmount">Issued:</label>
           <input
@@ -154,7 +162,6 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
             id="issuedAmount"
             value={formData.issuedAmount}
             onChange={(e) => handleInputChange('issuedAmount', e.target.value)}
-            required
           />
         </div>
         <div className="input-group">
@@ -164,7 +171,6 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
             id="receivedAmount"
             value={formData.receivedAmount}
             onChange={(e) => handleInputChange('receivedAmount', e.target.value)}
-            required
           />
         </div>
         <div className="input-group">
@@ -176,11 +182,8 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
             readOnly
           />
         </div>
-      </div>
-
-      <div className="rate-section">
         <div className="input-group">
-          <label htmlFor="ratePerDay">Rate per Item per Day (Rs.):</label>
+          <label htmlFor="ratePerDay">Rate/Day:</label>
           <input
             type="number"
             id="ratePerDay"
@@ -189,7 +192,7 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
           />
         </div>
         <div className="input-group">
-          <label htmlFor="rateRs">Rate (Rs.):</label>
+          <label htmlFor="rateRs">Rate Rs:</label>
           <input
             type="text"
             id="rateRs"
@@ -206,9 +209,8 @@ const InvoiceForm = ({ formData, setFormData, previousBalance, onAddEntry }) => 
             readOnly
           />
         </div>
+        <button type="submit" className="add-button">Add</button>
       </div>
-
-      <button type="submit" className="add-button">Add Entry</button>
     </form>
   );
 };
